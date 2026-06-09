@@ -28,10 +28,10 @@ hardening/
 ## ¿Qué hace cada módulo?
 
 ### 01 - Filesystem
-- Deshabilita módulos del kernel para sistemas de archivos poco comunes (`cramfs`, `freevxfs`, `jffs2`, `hfs`, `hfsplus`, `squashfs`, `udf`) — reducen la superficie de ataque.
+- Deshabilita módulos del kernel para sistemas de archivos poco comunes (`cramfs`, `freevxfs`, `jffs2`, `hfs`, `hfsplus`, `squashfs`, `udf`) - reducen la superficie de ataque.
 - Verifica que `/tmp`, `/var/tmp` y `/dev/shm` tengan las opciones `nodev`, `nosuid` y `noexec`, impidiendo ejecución de binarios en directorios de escritura libre.
 - Ajusta permisos de archivos críticos (`/etc/passwd`, `/etc/shadow`, etc.) según CIS.
-- Configura `UMASK 027` en `/etc/login.defs` — los archivos nuevos no son legibles por "otros" por defecto.
+- Configura `UMASK 027` en `/etc/login.defs` - los archivos nuevos no son legibles por "otros" por defecto.
 
 ### 02 - Services
 - Deshabilita servicios de red no necesarios en un servidor típico: `avahi`, `cups`, NFS, Samba, SNMP, entre otros.
@@ -44,7 +44,7 @@ hardening/
 - Instala `mod_evasive` (Apache) para mitigación de DoS si hay servidor web presente.
 
 ### 04 - Logging
-- Instala `auditd` + `audispd-plugins`. Registra a nivel de syscall: quién ejecutó qué, cuándo y qué archivos tocó — indispensable para forense post-incidente.
+- Instala `auditd` + `audispd-plugins`. Registra a nivel de syscall: quién ejecutó qué, cuándo y qué archivos tocó - indispensable para forense post-incidente.
 - Carga reglas CIS: login, identidad, sudo, módulos, cambios de permisos, montajes y eliminaciones.
 - Configura `auditd.conf` para rotación de logs y manejo de espacio en disco.
 - Asegura `rsyslog` activo y permisos correctos en `/var/log`.
@@ -53,7 +53,7 @@ hardening/
 ### 05 - SSH
 - Hace backup de `/etc/ssh/sshd_config` antes de cualquier cambio.
 - Aplica configuración endurecida: deshabilita login directo de root, limita intentos de autenticación, deshabilita reenvío de X11/agentes/TCP, usa solo algoritmos criptográficos modernos, configura timeout de sesiones inactivas.
-- **Valida la configuración con `sshd -t` antes de reiniciar** — si hay error, restaura el backup automáticamente (crítico en acceso remoto).
+- **Valida la configuración con `sshd -t` antes de reiniciar** - si hay error, restaura el backup automáticamente (crítico en acceso remoto).
 
 ### 06 - Users
 - Detecta y reporta cuentas con `UID 0` distintas de root (posibles backdoors).
@@ -71,7 +71,7 @@ hardening/
 - Instala `nftables` (reemplazo moderno de `iptables`, integrado al kernel).
 - Desactiva UFW si estaba activo para evitar conflictos.
 - Política *deny by default*: descarta todo el tráfico entrante salvo SSH, loopback y tráfico ya establecido.
-- **Valida la sintaxis con `nft -c` antes de aplicar** — un error de sintaxis no deja el servidor sin firewall.
+- **Valida la sintaxis con `nft -c` antes de aplicar** - un error de sintaxis no deja el servidor sin firewall.
 
 ### 09 - Fail2ban
 - Instala `fail2ban` y configura el jail `[sshd]`: bloqueo de IP tras 5 intentos fallidos en 10 minutos, durante 1 hora.
@@ -179,4 +179,4 @@ hardening_main.sh
 ## Referencias
 
 - [CIS Debian Linux Benchmark](https://www.cisecurity.org/benchmark/debian_linux)
-- [Lynis — Security Auditing Tool](https://cisofy.com/lynis/)
+- [Lynis - Security Auditing Tool](https://cisofy.com/lynis/)
