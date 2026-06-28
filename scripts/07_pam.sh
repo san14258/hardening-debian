@@ -22,9 +22,6 @@
 #   - Idempotente: siempre reconstruye common-auth desde el backup limpio.
 #   - Validación estructural + ROLLBACK automático si la estructura queda mal.
 #
-#   ATENCIÓN: PAM es delicado. Si rompemos common-auth nadie puede
-#   loguearse. Por eso, ANTES de cerrar la sesión donde corrés esto,
-#   verificá el login en OTRA TTY (Alt+F2). Ver SAFETY_NET al final.
 # =============================================================================
 
 [[ $EUID -ne 0 ]] && { echo "Ejecutar como root"; exit 1; }
