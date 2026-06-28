@@ -20,7 +20,7 @@ hardening/
     ├── 07_pam.sh              # CIS 5.3  — pwquality + faillock + SHA-512
     ├── 08_firewall.sh         # nftables — deny by default
     ├── 09_fail2ban.sh         # fail2ban — jail [sshd] + jails Apache (si aplica)
-    └── 10_updates.sh          # unattended-upgrades — parches de seguridad automáticos
+    ├── 10_updates.sh          # unattended-upgrades — parches de seguridad automáticos
     └── 11:lynis.sh            # Instala lynis y audita
 ```
 
